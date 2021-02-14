@@ -1,24 +1,68 @@
-# README
+# paperClip Rails Backend
+## User Authentication and Creation
+### Registration
+```Javascript
+const SERVER_URL = "http://localhost:3000/registrations";
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+axios.post(SERVER_URL, {
+					user: {
+						username,
+						email,
+						password,
+						password_confirmation,
+					},
+				},
+				{ withCredentials: true }
+			)
+			.then((response) => {
+				if (response.data.status === "created") {
+					this.props.handleSuccessfulAuth(response.data);
+				}
+			})
+			.catch((error) => {
+				console.log("registration error", error);
+			});
+```
 
-Things you may want to cover:
+Make sure { withCredentials: true } is included in the axios request as this will allow the API to access the local session cookie. Otherwise your request won't work as intended.
 
-* Ruby version
+### Login
 
-* System dependencies
+```Javascript
+const SERVER_URL = "http://localhost:3000/sessions";
 
-* Configuration
+	axios.post(SERVER_URL, {
+					user: {
+						username,
+						password,
+					},
+				},
+				{ withCredentials: true }
+			)
+			.then((response) => {
+				if (response.data.logged_in) {
+					this.props.handleSuccessfulAuth(response.data);
+				}
+			})
+			.catch((error) => {
+				console.log("login error", error);
+			});
+```
+Make sure { withCredentials: true } is included in the axios request as this will allow the API to access the local session cookie. Otherwise your request won't work as intended.
 
-* Database creation
+### Logout
+```Javascript
+const SERVER_URL = "http://localhost:3000/logout";
 
-* Database initialization
+	axios.delete(SERVER_URL, { withCredentials: true })
+			 .then((response) => {
+			  	this.props.handleLogout();
+			  })
+			 .catch((error) => {
+			  	console.log("logout error", error);
+			  });
+```
 
-* How to run the test suite
+Make sure { withCredentials: true } is included in the axios request as this will allow the API to access the local session cookie. Otherwise your request won't work as intended.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- On the Rails backend, the action will run the reset_session method which will clear all session info for that session.

@@ -4,17 +4,8 @@
 ```Javascript
 const SERVER_URL = "http://localhost:3000/registrations";
 
-axios.post(SERVER_URL, {
-					user: {
-						username,
-						email,
-						password,
-						password_confirmation,
-					},
-				},
-				{ withCredentials: true }
-			)
-			.then((response) => {
+axios.post(SERVER_URL, { user: { username, email,	password,	password_confirmation }},	{ withCredentials: true })
+     .then((response) => {
 				if (response.data.status === "created") {
 					this.props.handleSuccessfulAuth(response.data);
 				}
@@ -31,15 +22,8 @@ Make sure { withCredentials: true } is included in the axios request as this wil
 ```Javascript
 const SERVER_URL = "http://localhost:3000/sessions";
 
-	axios.post(SERVER_URL, {
-					user: {
-						username,
-						password,
-					},
-				},
-				{ withCredentials: true }
-			)
-			.then((response) => {
+	axios.post(SERVER_URL, { user: { username, password }	}, { withCredentials: true })
+       .then((response) => {
 				if (response.data.logged_in) {
 					this.props.handleSuccessfulAuth(response.data);
 				}

@@ -1,7 +1,16 @@
 class MessagesController < ApplicationController
   def index
     messages = Message.all
-    render json: messages
+    report = []
+    
+    messages.each { |message|
+      report.push({
+        :message => message,
+        :username => message.user.username
+      })
+    }
+
+    render json: report
   end
 
   def create

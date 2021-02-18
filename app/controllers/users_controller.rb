@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
     clips.each { |clip|
       report.push({
+        clip_id: clip.id,
         username: clip.message.user.username,
         text: clip.message.text,
         messaged_at: clip.message.created_at,

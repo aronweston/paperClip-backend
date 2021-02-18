@@ -8,7 +8,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   end
 
   allow do
-    origins 'https://124.168.75.194:3001' # update with heroku domain
+    origins '124.168.75.194' # update with heroku domain
     resource '*',
     :headers => :any,
     :methods => %i( get post put patch delete options head ), # %i converts it to symbols

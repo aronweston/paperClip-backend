@@ -8,7 +8,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   # end
 
   allow do
-    origins 'justclipit.netlify.app' # update with heroku domain
+    origins 'acapaperclip.netlify.app', 'justclipit.netlify.app' # update with heroku domain
     resource '*',
     :headers => :any,
     :methods => %i( get post put patch delete options head ), # %i converts it to symbols

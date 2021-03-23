@@ -1,6 +1,9 @@
-# paperClip Rails Backend
+# paperClip - Ruby on Rails Backend
+
 ## User Authentication and Creation
+
 ### Registration
+
 ```Javascript
 const SERVER_URL = "http://localhost:3000/registrations";
 
@@ -32,9 +35,11 @@ const SERVER_URL = "http://localhost:3000/sessions";
 				console.log("login error", error);
 			});
 ```
+
 Make sure { withCredentials: true } is included in the axios request as this will allow the API to access the local session cookie. Otherwise your request won't work as intended.
 
 ### Logout
+
 ```Javascript
 const SERVER_URL = "http://localhost:3000/logout";
 
